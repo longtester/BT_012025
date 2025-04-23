@@ -28,11 +28,11 @@ public class Projects {
     // Xpath for Rich Text Editor
     public static String buttonFile = "//span[text()='File']";
     public static String buttonEdit = "//span[text()='Edit']";
-    public static String buttonView = "/span[text()='View']";
-    public static String buttonInsert = "/span[text()='Insert']";
-    public static String buttonFormat = "/span[text()='Format']";
-    public static String buttonTools = "/span[text()='Tools']";
-    public static String buttonTable = "/span[text()='Table']";
+    public static String buttonView = "//span[text()='View']";
+    public static String buttonInsert = "//span[text()='Insert']";
+    public static String buttonFormat = "//span[text()='Format']";
+    public static String buttonTools = "//span[text()='Tools']";
+    public static String buttonTable = "//span[text()='Table']";
     public static String dropdownFont = "//button[@title='Font System Font']";
     public static String dropdownlistFont = "//button[@title='Font System Font']/following::div[contains(@class,'item-label')]";
     public static String dropdownFontSize = "//button[contains(@title,'Font size')]";
