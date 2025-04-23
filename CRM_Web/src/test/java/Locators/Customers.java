@@ -30,21 +30,27 @@ public class Customers {
     public static String buttonSaveCreateContact = "//div[@id='profile-save-section']/button[normalize-space() = 'Save and create contact']";
     public static String buttonSave = "//div[@id='profile-save-section']//button[normalize-space() = 'Save']";
 
+
     // Field input xpath on Customer Details
-    public static String input_company = "//input[@id='company']";
-    public static String input_vatnumber = "//input[@id='vat']";
-    public static String input_phonenumber = "//input[@id='phonenubmer']";
-    public static String input_webiste = "//input[@id='website']";
+    public static String input_company = "company";
+    public static String input_vatnumber = "vat";
+    public static String input_phonenumber = "phonenumber";
+    public static String input_webiste = "website";
     public static String dropdown_group = "//button[@data-id='groups_in[]']";
     public static String input_searchgroup = "//select[@id='groups_in[]']/following-sibling::div//input[@type='search']";
+    public static String listgroup  = "//label[@for='default_currency']/preceding::div[@role='listbox']//li";
     public static String dropdown_currency = "//button[@data-id='default_currency']";
     public static String input_searchcurrency = "//select[@id='default_currency']/following-sibling::div//input[@type='search']";
+    public static String listcurrency = "//label[@for='default_currency']/following::div[@role='listbox' and @id='bs-select-2']//li";
     public static String dropdown_language = "//button[@data-id='default_language']";
+    public static String listlanguage = "//label[@for='default_language']/following::div[@role='listbox' and @id='bs-select-3']//li";
     public static String input_address = "address";
     public static String input_city = "city";
     public static String input_state = "state";
     public static String input_zipcode = "zip";
     public static String select_country = "//button[@data-id='country']";
+    public static String input_searchcountry = "//button[@data-id='country']/following-sibling::div//input[@type='search']";
+    public static String listcountry = "//label[@for='country']/following::div[@role='listbox' and @id = 'bs-select-4']//li";
 
     // Xpath on Add new customer group
     public static String add_new_customer_group = "//div[@class='input-group-btn']";
@@ -83,5 +89,8 @@ public class Customers {
     public static String input_state3 = "shipping_state";
     public static String input_zipcode3 = "shipping_zip";
     public static String dropdown_country3 = "//button[@data-id='shipping_country']";
+
+    // Xpath for message addCustomer success
+    public static String alertAddCustomerSuccess = "//span[text()='Customer added successfully.']";
 
 }
