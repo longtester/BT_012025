@@ -3,17 +3,21 @@ package CustomersPage.CustomerDetails;
 import Locators.Customers;
 import Locators.LoginPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+
 import java.time.Duration;
+
 import java.util.List;
 
+import static Locators.Customers.inputSearch;
 import static Locators.Customers.listcountry;
 
 public class addNewCustomer {
-    static String company = "LongQA";
+    static String company = "Long QA/QC";
     static String VATnumber = "123456789";
     static String phoneNumber = "0123456789";
     static String website = "https://anhtester.com/";
@@ -169,8 +173,48 @@ public class addNewCustomer {
         else{
             System.out.println("Active Customers after add new customer is not correct");
         }
-        
-        Thread.sleep(4000);
+
+        // Inactive Customers
+        int totalInactiveCustomersInt = Integer.parseInt(currentInactiveCustomersBeforeAdd);
+        String numberTotalInactiveCustomersAfterAdd = driver.findElement(By.xpath(Customers.inactiveCustomers)).getText();
+        if((Integer.parseInt(numberTotalInactiveCustomersAfterAdd)) == totalInactiveCustomersInt){
+            System.out.println(+Integer.parseInt(numberTotalInactiveCustomersAfterAdd)+ " Inactive Customers after add new customer is correct");
+        }
+        else{
+            System.out.println("Inactive Customers after add new customer is not correct");
+        }
+
+        // Active Contacts
+        int totalActiveContactsInt = Integer.parseInt(currentActiveContactsBeforeAdd);
+        String numberTotalActiveContactsAfterAdd = driver.findElement(By.xpath(Customers.activeContacts)).getText();
+        if(totalActiveContactsInt == Integer.parseInt(numberTotalActiveContactsAfterAdd)){
+            System.out.println(+Integer.parseInt(numberTotalActiveContactsAfterAdd)+ " Active Contacts after add new customer is correct");
+        }
+        else{
+            System.out.println("Active Contacts after add new customer is not correct");
+        }
+
+        // Inactive Contacts
+        int totalInactiveContactsInt = Integer.parseInt(currentInactiveContactsBeforeAdd);
+        String numberTotalInactiveContactsAfterAdd = driver.findElement(By.xpath(Customers.inactiveContacts)).getText();
+        if(totalInactiveContactsInt == Integer.parseInt(numberTotalInactiveContactsAfterAdd)){
+            System.out.println(+Integer.parseInt(numberTotalInactiveContactsAfterAdd)+ " Inactive Contacts after add new customer is correct");
+        }
+        else{
+            System.out.println("Inactive Contacts after add new customer is not correct");
+        }
+        // Validate thông tin Customer đã có trong table chưa
+        driver.findElement(By.xpath(inputSearch)).sendKeys("long");
+        Thread.sleep(1000);
+        List<WebElement> listCompany = driver.findElements(By.xpath(Customers.listCompany));
+        for (int i = 0; i < listCompany.size(); i++) {
+            if (listCompany.get(i).getText().equals(company)) {
+               listCompany.get(i).click();
+               break;
+            }
+        }
+
+        Thread.sleep(3000);
         driver.quit();
     }
 }

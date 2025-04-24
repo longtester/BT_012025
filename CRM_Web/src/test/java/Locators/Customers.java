@@ -100,4 +100,6 @@ public class Customers {
     public static String activeContacts = "//span[text()='Active Contacts']/preceding-sibling::span";
     public static String inactiveContacts = "//span[text()='Inactive Contacts']/preceding-sibling::span";
 
+    // Xpath for list Company in table
+    public static String listCompany = "//table[@id='clients']//th[@id='th-company']/following::tr/td[3]/a";
 }
