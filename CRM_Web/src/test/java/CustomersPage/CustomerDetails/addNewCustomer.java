@@ -26,11 +26,17 @@ public class addNewCustomer {
     static String zipcode = "123456";
     static String country = "Vietnam";
 
-    public static int getTotalCustomers(int element) {
+    public static int getTotalAfterAdd(int element) {
         int total;
         total = element + 1;
         return total;
     }
+    public static int getToTalAfterDelete(int element){
+        int total;
+        total = element - 1;
+        return total;
+    }
+
 
     public static void main(String[] args) throws InterruptedException {
         WebDriver driver = new ChromeDriver();
@@ -45,7 +51,12 @@ public class addNewCustomer {
 
         // Click Customers menu
         driver.findElement(By.xpath(Customers.menuCustomer)).click();
+        // Lấy số lượng Total Customers,Active Customers, Inactive Customers, Active Contacts, Inactive Contacts để lát so sánh
         String currentTotalCustomersBeforeAdd = driver.findElement(By.xpath(Customers.totalCustomers)).getText();
+        String currentActiveCustomersBeforeAdd = driver.findElement(By.xpath(Customers.activeCustomers)).getText();
+        String currentInactiveCustomersBeforeAdd = driver.findElement(By.xpath(Customers.inactiveCustomers)).getText();
+        String currentActiveContactsBeforeAdd = driver.findElement(By.xpath(Customers.activeContacts)).getText();
+        String currentInactiveContactsBeforeAdd = driver.findElement(By.xpath(Customers.inactiveContacts)).getText();
         // Click button New Customer
         boolean isbuttonNewCustomerEnabled = driver.findElement(By.xpath(Customers.buttonNewCustomer)).isEnabled();
         System.out.println("Check status button New Customer: " + isbuttonNewCustomerEnabled);
@@ -134,20 +145,32 @@ public class addNewCustomer {
         }
 
         // Validate thông tin trong Customers Summary
+        // Total Customers
         driver.findElement(By.xpath(Customers.menuCustomer)).click();
         Thread.sleep(1000);
         int totalCustomersInt = Integer.parseInt(currentTotalCustomersBeforeAdd);// Ép kiểu String về int cho biến totalCustomers truước khi cộng
-        int totalCustomersAfterAdd = getTotalCustomers(totalCustomersInt);
-        String totalCustomerAfterAdd = driver.findElement(By.xpath(Customers.totalCustomers)).getText();
+        int totalCustomersAfterAdd = getTotalAfterAdd(totalCustomersInt);
+        String numberTotalCustomerAfterAdd = driver.findElement(By.xpath(Customers.totalCustomers)).getText();
 
 
-        if(totalCustomersAfterAdd == Integer.parseInt(totalCustomerAfterAdd)){
-            System.out.println(+Integer.parseInt(totalCustomerAfterAdd)+ " Total Customers after add new customer is correct");
+        if(totalCustomersAfterAdd == Integer.parseInt(numberTotalCustomerAfterAdd)){
+            System.out.println(+Integer.parseInt(numberTotalCustomerAfterAdd)+ " Total Customers after add new customer is correct");
         }else{
             System.out.println("Total Customer after add new customer is not correct");
         }
+
+        // Active Customers
+        int totalActiveCustomersInt = Integer.parseInt(currentActiveCustomersBeforeAdd);
+        int totalActiveCustomersAfterAdd = getTotalAfterAdd(totalActiveCustomersInt);
+        String numberTotalActiveCustomersAfterAdd = driver.findElement(By.xpath(Customers.activeCustomers)).getText();
+        if (totalActiveCustomersAfterAdd == Integer.parseInt(numberTotalActiveCustomersAfterAdd)){
+            System.out.println(+Integer.parseInt(numberTotalActiveCustomersAfterAdd)+ " Active Customers after add new customer is correct");
+        }
+        else{
+            System.out.println("Active Customers after add new customer is not correct");
+        }
+        
         Thread.sleep(4000);
         driver.quit();
-
     }
 }

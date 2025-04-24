@@ -97,5 +97,7 @@ public class Customers {
     public static String totalCustomers = "//span[text()='Total Customers']/preceding-sibling::span";
     public static String activeCustomers = "//span[text()='Active Customers']/preceding-sibling::span";
     public static String inactiveCustomers = "//span[text()='Inactive Customers']/preceding-sibling::span";
+    public static String activeContacts = "//span[text()='Active Contacts']/preceding-sibling::span";
+    public static String inactiveContacts = "//span[text()='Inactive Contacts']/preceding-sibling::span";
 
 }
