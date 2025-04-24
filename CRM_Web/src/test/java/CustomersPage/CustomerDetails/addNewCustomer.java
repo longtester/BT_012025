@@ -25,6 +25,13 @@ public class addNewCustomer {
     static String state = "Thu Duc";
     static String zipcode = "123456";
     static String country = "Vietnam";
+
+    public static int getTotalCustomers(int element) {
+        int total;
+        total = element + 1;
+        return total;
+    }
+
     public static void main(String[] args) throws InterruptedException {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -38,6 +45,7 @@ public class addNewCustomer {
 
         // Click Customers menu
         driver.findElement(By.xpath(Customers.menuCustomer)).click();
+        String currentTotalCustomersBeforeAdd = driver.findElement(By.xpath(Customers.totalCustomers)).getText();
         // Click button New Customer
         boolean isbuttonNewCustomerEnabled = driver.findElement(By.xpath(Customers.buttonNewCustomer)).isEnabled();
         System.out.println("Check status button New Customer: " + isbuttonNewCustomerEnabled);
@@ -53,8 +61,8 @@ public class addNewCustomer {
         driver.findElement(By.xpath(Customers.input_searchgroup)).sendKeys("v");
         Thread.sleep(1000);
         List<WebElement> listGroup = driver.findElements(By.xpath(Customers.listgroup));
-        for(int i =0;i<listGroup.size();i++){
-            if(listGroup.get(i).getText().equals(group)){
+        for (int i = 0; i < listGroup.size(); i++) {
+            if (listGroup.get(i).getText().equals(group)) {
                 listGroup.get(i).click();
                 break;
             }
@@ -63,8 +71,8 @@ public class addNewCustomer {
         driver.findElement(By.xpath(Customers.dropdown_currency)).click();
         Thread.sleep(1000);
         List<WebElement> listCurrency = driver.findElements(By.xpath(Customers.listcurrency));
-        for(int i =0;i<listCurrency.size();i++){
-            if(listCurrency.get(i).getText().equals(currency)){
+        for (int i = 0; i < listCurrency.size(); i++) {
+            if (listCurrency.get(i).getText().equals(currency)) {
                 listCurrency.get(i).click();
                 break;
             }
@@ -72,8 +80,8 @@ public class addNewCustomer {
         driver.findElement(By.xpath(Customers.dropdown_language)).click();
         Thread.sleep(1000);
         List<WebElement> listLanguage = driver.findElements(By.xpath(Customers.listlanguage));
-        for(int i =0;i<listLanguage.size();i++){
-            if(listLanguage.get(i).getText().equals(language)){
+        for (int i = 0; i < listLanguage.size(); i++) {
+            if (listLanguage.get(i).getText().equals(language)) {
                 listLanguage.get(i).click();
                 break;
             }
@@ -87,8 +95,8 @@ public class addNewCustomer {
         driver.findElement(By.xpath(Customers.input_searchcountry)).sendKeys(country);
         Thread.sleep(1000);
         List<WebElement> listCountry = driver.findElements(By.xpath(listcountry));
-        for(int i = 0;i<listCountry.size();i++){
-            if(listCountry.get(i).getText().equals(country)){
+        for (int i = 0; i < listCountry.size(); i++) {
+            if (listCountry.get(i).getText().equals(country)) {
                 listCountry.get(i).click();
                 break;
             }
@@ -117,12 +125,26 @@ public class addNewCustomer {
             System.out.println("Add new customer failed");
         }
         if (valueCompany.equals(company) && valueVATnumber.equals(VATnumber) && valuePhoneNumber.equals(phoneNumber)
-                && valueWebsite.equals(website) && valueGroup.equals(group) && valueCurrency.equals(currency.replace("$",""))
+                && valueWebsite.equals(website) && valueGroup.equals(group) && valueCurrency.equals(currency.replace("$", ""))
                 && valueLanguage.equals(language) && valueAddress.equals(address) && valueCity.equals(city)
                 && valueState.equals(state) && valueZipcode.equals(zipcode) && valueCountry.equals(country)) {
-            System.out.println("The information of "+company+" on Customer Details is correct");
+            System.out.println("The information of " + company + " on Customer Details is correct");
         } else {
-            System.out.println("Some information of "+company+" on Customer Details is not correct");
+            System.out.println("Some information of " + company + " on Customer Details is not correct");
+        }
+
+        // Validate thông tin trong Customers Summary
+        driver.findElement(By.xpath(Customers.menuCustomer)).click();
+        Thread.sleep(1000);
+        int totalCustomersInt = Integer.parseInt(currentTotalCustomersBeforeAdd);// Ép kiểu String về int cho biến totalCustomers truước khi cộng
+        int totalCustomersAfterAdd = getTotalCustomers(totalCustomersInt);
+        String totalCustomerAfterAdd = driver.findElement(By.xpath(Customers.totalCustomers)).getText();
+
+
+        if(totalCustomersAfterAdd == Integer.parseInt(totalCustomerAfterAdd)){
+            System.out.println(+Integer.parseInt(totalCustomerAfterAdd)+ " Total Customers after add new customer is correct");
+        }else{
+            System.out.println("Total Customer after add new customer is not correct");
         }
         Thread.sleep(4000);
         driver.quit();

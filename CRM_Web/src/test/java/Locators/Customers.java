@@ -93,4 +93,9 @@ public class Customers {
     // Xpath for message addCustomer success
     public static String alertAddCustomerSuccess = "//span[text()='Customer added successfully.']";
 
+    // Xpath for number of Total Customers, Active Customers, Inactive Customers, Active Contacts, Inactive Contacts
+    public static String totalCustomers = "//span[text()='Total Customers']/preceding-sibling::span";
+    public static String activeCustomers = "//span[text()='Active Customers']/preceding-sibling::span";
+    public static String inactiveCustomers = "//span[text()='Inactive Customers']/preceding-sibling::span";
+
 }
