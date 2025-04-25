@@ -1,4 +1,4 @@
-package CustomersPage.CustomerDetails;
+package CustomersPage;
 
 import Locators.Customers;
 import Locators.LoginPage;

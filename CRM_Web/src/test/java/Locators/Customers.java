@@ -102,4 +102,5 @@ public class Customers {
 
     // Xpath for list Company in table
     public static String listCompany = "//table[@id='clients']//th[@id='th-company']/following::tr/td[3]/a";
+    public static String buttonDeleteCompany ="//table[@id='clients']//th[@id='th-company']/following::tr/td[3]//a[contains(@href,'delete')]";
 }

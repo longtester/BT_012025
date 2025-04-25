@@ -1,4 +1,4 @@
-package CustomersPage.CustomerDetails;
+package CustomersPage;
 
 import Locators.Customers;
 import Locators.LoginPage;
@@ -17,7 +17,7 @@ import static Locators.Customers.inputSearch;
 import static Locators.Customers.listcountry;
 
 public class addNewCustomer {
-    static String company = "Long QA/QC";
+    public static String company = "Long QA/QC";
     static String VATnumber = "123456789";
     static String phoneNumber = "0123456789";
     static String website = "https://anhtester.com/";
@@ -35,11 +35,7 @@ public class addNewCustomer {
         total = element + 1;
         return total;
     }
-    public static int getToTalAfterDelete(int element){
-        int total;
-        total = element - 1;
-        return total;
-    }
+
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -55,7 +51,7 @@ public class addNewCustomer {
 
         // Click Customers menu
         driver.findElement(By.xpath(Customers.menuCustomer)).click();
-        // Lấy số lượng Total Customers,Active Customers, Inactive Customers, Active Contacts, Inactive Contacts để lát so sánh
+        // Lấy số lượng Total Customers,Active Customers, Inactive Customers, Active Contacts, Inactive Contacts hiện tại để lát so sánh
         String currentTotalCustomersBeforeAdd = driver.findElement(By.xpath(Customers.totalCustomers)).getText();
         String currentActiveCustomersBeforeAdd = driver.findElement(By.xpath(Customers.activeCustomers)).getText();
         String currentInactiveCustomersBeforeAdd = driver.findElement(By.xpath(Customers.inactiveCustomers)).getText();
@@ -209,11 +205,10 @@ public class addNewCustomer {
         List<WebElement> listCompany = driver.findElements(By.xpath(Customers.listCompany));
         for (int i = 0; i < listCompany.size(); i++) {
             if (listCompany.get(i).getText().equals(company)) {
-               listCompany.get(i).click();
+                System.out.println("Customer " + company + " is displayed in the table");
                break;
             }
         }
-
         Thread.sleep(3000);
         driver.quit();
     }
