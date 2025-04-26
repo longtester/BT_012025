@@ -1,9 +1,8 @@
-package CustomersPage;
+package Customers.CustomersPage;
 
 import Locators.Customers;
 import Locators.LoginPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -112,9 +111,10 @@ public class addNewCustomer {
                 break;
             }
         }
-        driver.findElement(By.xpath(Customers.buttonSave)).click();
+        driver.findElement(By.xpath(Customers.buttonSaveCustomer)).click();
         Thread.sleep(1000);
-        String msgAddCustomerSuccess = driver.findElement(By.xpath(Customers.alertAddCustomerSuccess)).getText();
+        String alertAddCustomerSuccess = driver.findElement(By.xpath(Customers.alertAddCustomerSuccess)).getText();
+        boolean checkaAlertAddCustomerSuccess = driver.findElement(By.xpath(Customers.alertAddCustomerSuccess)).isDisplayed();
 
         // Validate thông tin Customer sau khi add thành công
         String valueCompany = driver.findElement(By.id(Customers.input_company)).getAttribute("value");
@@ -130,7 +130,7 @@ public class addNewCustomer {
         String valueZipcode = driver.findElement(By.id(Customers.input_zipcode)).getAttribute("value");
         String valueCountry = driver.findElement(By.xpath(Customers.select_country)).getText();
 
-        if (msgAddCustomerSuccess.equals("Customer added successfully.")) {
+        if (alertAddCustomerSuccess.equals("Customer added successfully.") && checkaAlertAddCustomerSuccess == true) {
             System.out.println("Add new customer success");
         } else {
             System.out.println("Add new customer failed");

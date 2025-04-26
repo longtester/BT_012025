@@ -26,9 +26,9 @@ public class Customers {
     public static String zipcode1 = "//label[@for='zip']";
     public static String country1 = "//label[@for='country']";
 
-    // Button xpath Save/Create contact and Submit
+    // Button xpath Save/Create Customer and Submit
     public static String buttonSaveCreateContact = "//div[@id='profile-save-section']/button[normalize-space() = 'Save and create contact']";
-    public static String buttonSave = "//div[@id='profile-save-section']//button[normalize-space() = 'Save']";
+    public static String buttonSaveCustomer = "//div[@id='profile-save-section']//button[normalize-space() = 'Save']";
 
 
     // Field input xpath on Customer Details
@@ -102,5 +102,6 @@ public class Customers {
 
     // Xpath for list Company in table
     public static String listCompany = "//table[@id='clients']//th[@id='th-company']/following::tr/td[3]/a";
-    public static String buttonDeleteCompany ="//table[@id='clients']//th[@id='th-company']/following::tr/td[3]//a[contains(@href,'delete')]";
+    public static String listbuttonContactCompany ="//th[@id='th-company']/following::tr/td[3]/div/a[2]";
+
 }
