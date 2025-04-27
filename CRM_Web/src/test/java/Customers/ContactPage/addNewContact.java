@@ -145,11 +145,11 @@ public class addNewContact {
         // Validate thông tin trong Customers Summary
         // Active Contacts
         driver.navigate().back();
-        int totalActiveContactInt = Integer.parseInt(currentActiveContactsBeforeAdd);
-        int expect_TotalActiveContactAfterAdd = getTotalAfterAdd(totalActiveContactInt);
-        String numberTotalActiveContactAfterAdd = driver.findElement(By.xpath(Customers.activeContacts)).getText();
-        if(Integer.parseInt(numberTotalActiveContactAfterAdd) == expect_TotalActiveContactAfterAdd){
-            System.out.println(+Integer.parseInt(numberTotalActiveContactAfterAdd)+ " Total Active Contact after add new contact is correct");
+        int totalActiveContactsInt = Integer.parseInt(currentActiveContactsBeforeAdd);
+        int expect_TotalActiveContactsAfterAdd = getTotalAfterAdd(totalActiveContactsInt);
+        String numberTotalActiveContactsAfterAdd = driver.findElement(By.xpath(Customers.activeContacts)).getText();
+        if(Integer.parseInt(numberTotalActiveContactsAfterAdd) == expect_TotalActiveContactsAfterAdd){
+            System.out.println(+Integer.parseInt(numberTotalActiveContactsAfterAdd)+ " Total Active Contact after add new contact is correct");
         }
         else{
             System.out.println("Total Active Contact after add new contact is not correct");

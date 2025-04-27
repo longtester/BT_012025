@@ -38,7 +38,8 @@ public class inActiveContact {
         // Click Customers menu
         driver.findElement(By.xpath(Customers.menuCustomer)).click();
         // Lấy số lượng Inactive Contacts hiện tại để lát so sánh
-        String currentInactiveContactsBeforeAdd = driver.findElement(By.xpath(Customers.inactiveContacts)).getText();
+        String currentActiveContactsBeforeInactive = driver.findElement(By.xpath(Customers.activeContacts)).getText();
+        String currentInactiveContactsBeforeInactive = driver.findElement(By.xpath(Customers.inactiveContacts)).getText();
 
         // Search tên Company và add new contact
         driver.findElement(By.xpath(Customers.inputSearch)).sendKeys("long");
@@ -75,17 +76,25 @@ public class inActiveContact {
         driver.navigate().back();
         // Validate thông tin trong Customers Summary
         // InActive Contacts: Hiện tại Total inactive contact = 0 nên phải check điều kiện !=0 rồi đi so sánh
-        int totalInactiveContactsInt = Integer.parseInt(currentInactiveContactsBeforeAdd);
-        if(totalInactiveContactsInt !=0){
-            int expect_TotalInActiveContact = getTotalAfterDelete(totalInactiveContactsInt);
-            String numberTotalInactiveContacts = driver.findElement(By.xpath(Customers.inactiveContacts)).getText();
-            if(Integer.parseInt(numberTotalInactiveContacts) == expect_TotalInActiveContact){
-                System.out.println(+Integer.parseInt(numberTotalInactiveContacts)+ " Total Inactive Contacts after inactive contact is correct");
-            }else{
-                System.out.println("Total Inactive Contacts after inactive contact is not correct");
-            }
+        int totalInactiveContactsInt = Integer.parseInt(currentInactiveContactsBeforeInactive);
+        int expect_TotalInActiveContact = getTotalAfterAdd(totalInactiveContactsInt);
+        String numberTotalInactiveContacts = driver.findElement(By.xpath(Customers.inactiveContacts)).getText();
+
+        if(Integer.parseInt(numberTotalInactiveContacts) == expect_TotalInActiveContact){
+            System.out.println(+Integer.parseInt(numberTotalInactiveContacts)+ " Total Inactive Contacts after inactive contact is correct");
         }else{
-            System.out.println("Curent Total Inactive Contacts is < 0");
+            System.out.println("Total Inactive Contacts after inactive contact is not correct");
+        }
+
+        // Active Contacts
+        int totalActiveContactInt = Integer.parseInt(currentActiveContactsBeforeInactive);
+        int expect_TotalActiveContact = getTotalAfterDelete(totalActiveContactInt);
+        String numberTotalActiveContact = driver.findElement(By.xpath(Customers.activeContacts)).getText();
+        if(Integer.parseInt(numberTotalActiveContact) == expect_TotalActiveContact){
+            System.out.println(+Integer.parseInt(numberTotalActiveContact)+ " Total Active Contact after inactive contact is correct");
+        }
+        else{
+            System.out.println("Total Active Contact after inactive contact is not correct");
         }
 
         Thread.sleep(3000);
