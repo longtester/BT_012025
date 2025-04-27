@@ -20,6 +20,13 @@ public class Contact {
     public static String alertErrorEmailRequired = "//p[@class='text-danger' and @id='email-error']";
     public static String alertErrorPasswordRequired = "//p[@class='text-danger' and @id='password-error']";
 
-    // Xpath for add new contact success meesage
+    // Xpath for add new contact success message
     public static String alertAddContactSuccess = "//span[text() = 'Contact added successfully.']";
+
+    // Xpath for listFullName, listEmail
+    public static String listFullName = "//th[contains(@aria-label,'Full Name')]/following::tr/td[1]";
+    public static String listEmail = "//th[contains(@aria-label,'Email')]/following::tr/td[2]";
+
+    // Xpath for toggleInactiveContact
+    public static String toggleInactiveContact = "//tr[1]/td//input[@type='checkbox']/following-sibling::label";
 }

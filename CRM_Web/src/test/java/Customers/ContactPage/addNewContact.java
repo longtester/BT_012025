@@ -12,13 +12,20 @@ import org.openqa.selenium.interactions.Actions;
 
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class addNewContact {
     static String firtname = "long";
     static String lastname = "tester";
-    static String email = "test@mail.com";
+    static String email = "longtester@mail.com";
     static String password = "123456";
+
+    public static int getTotalAfterAdd(int element) {
+        int total;
+        total = element + 1;
+        return total;
+    }
     public static void main(String[] args) throws InterruptedException {
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -32,10 +39,7 @@ public class addNewContact {
 
         // Click Customers menu
         driver.findElement(By.xpath(Customers.menuCustomer)).click();
-        // Lấy số lượng Total Customers,Active Customers, Inactive Customers, Active Contacts, Inactive Contacts hiện tại để lát so sánh
-        String currentTotalCustomersBeforeAdd = driver.findElement(By.xpath(Customers.totalCustomers)).getText();
-        String currentActiveCustomersBeforeAdd = driver.findElement(By.xpath(Customers.activeCustomers)).getText();
-        String currentInactiveCustomersBeforeAdd = driver.findElement(By.xpath(Customers.inactiveCustomers)).getText();
+        // Lấy số lượng Active Contacts, Inactive Contacts hiện tại để lát so sánh
         String currentActiveContactsBeforeAdd = driver.findElement(By.xpath(Customers.activeContacts)).getText();
         String currentInactiveContactsBeforeAdd = driver.findElement(By.xpath(Customers.inactiveContacts)).getText();
 
@@ -118,6 +122,37 @@ public class addNewContact {
             System.out.println("Add new contact success");
         }else{
             System.out.println("Add new contact failed");
+        }
+
+        // Validate thông tin Contact sau khi add thành công
+        Thread.sleep(2000);
+        int indexEmail = 0;
+        List<WebElement> listEmailContact = driver.findElements(By.xpath(Contact.listEmail));
+        for(int i = 0;i<listEmailContact.size();i++){
+            if(listEmailContact.get(i).getText().equals(email)){
+                indexEmail = i;
+                System.out.println("Email "+email+" is correct");
+                break;
+            }
+        }
+        List<WebElement> listFullNameContact = driver.findElements(By.xpath(Contact.listFullName));
+        if(listFullNameContact.get(indexEmail).getText().equals(firtname+" "+lastname)){
+            System.out.println("FullName "+(firtname+" "+lastname)+" is correct");
+        }else{
+            System.out.println("FullName "+(firtname+" "+lastname)+" is not correct");
+        }
+
+        // Validate thông tin trong Customers Summary
+        // Active Contacts
+        driver.navigate().back();
+        int totalActiveContactInt = Integer.parseInt(currentActiveContactsBeforeAdd);
+        int expect_TotalActiveContactAfterAdd = getTotalAfterAdd(totalActiveContactInt);
+        String numberTotalActiveContactAfterAdd = driver.findElement(By.xpath(Customers.activeContacts)).getText();
+        if(Integer.parseInt(numberTotalActiveContactAfterAdd) == expect_TotalActiveContactAfterAdd){
+            System.out.println(+Integer.parseInt(numberTotalActiveContactAfterAdd)+ " Total Active Contact after add new contact is correct");
+        }
+        else{
+            System.out.println("Total Active Contact after add new contact is not correct");
         }
 
 

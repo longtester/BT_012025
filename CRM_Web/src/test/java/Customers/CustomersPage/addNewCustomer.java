@@ -34,6 +34,11 @@ public class addNewCustomer {
         total = element + 1;
         return total;
     }
+    public static int getTotalAfterDelete(int element){
+        int total;
+        total = element -1;
+        return total;
+    }
 
 
 
@@ -149,11 +154,11 @@ public class addNewCustomer {
         driver.findElement(By.xpath(Customers.menuCustomer)).click();
         Thread.sleep(1000);
         int totalCustomersInt = Integer.parseInt(currentTotalCustomersBeforeAdd);// Ép kiểu String về int cho biến totalCustomers truước khi cộng
-        int totalCustomersAfterAdd = getTotalAfterAdd(totalCustomersInt);
+        int expect_TotalCustomersAfterAdd = getTotalAfterAdd(totalCustomersInt);
         String numberTotalCustomerAfterAdd = driver.findElement(By.xpath(Customers.totalCustomers)).getText();
 
 
-        if(totalCustomersAfterAdd == Integer.parseInt(numberTotalCustomerAfterAdd)){
+        if(expect_TotalCustomersAfterAdd == Integer.parseInt(numberTotalCustomerAfterAdd)){
             System.out.println(+Integer.parseInt(numberTotalCustomerAfterAdd)+ " Total Customers after add new customer is correct");
         }else{
             System.out.println("Total Customer after add new customer is not correct");
@@ -161,43 +166,43 @@ public class addNewCustomer {
 
         // Active Customers
         int totalActiveCustomersInt = Integer.parseInt(currentActiveCustomersBeforeAdd);
-        int totalActiveCustomersAfterAdd = getTotalAfterAdd(totalActiveCustomersInt);
+        int expect_TotalActiveCustomersAfterAdd = getTotalAfterAdd(totalActiveCustomersInt);
         String numberTotalActiveCustomersAfterAdd = driver.findElement(By.xpath(Customers.activeCustomers)).getText();
-        if (totalActiveCustomersAfterAdd == Integer.parseInt(numberTotalActiveCustomersAfterAdd)){
-            System.out.println(+Integer.parseInt(numberTotalActiveCustomersAfterAdd)+ " Active Customers after add new customer is correct");
+        if (expect_TotalActiveCustomersAfterAdd == Integer.parseInt(numberTotalActiveCustomersAfterAdd)){
+            System.out.println(+Integer.parseInt(numberTotalActiveCustomersAfterAdd)+ " Total Active Customers after add new customer is correct");
         }
         else{
-            System.out.println("Active Customers after add new customer is not correct");
+            System.out.println("Total Active Customers after add new customer is not correct");
         }
 
         // Inactive Customers
         int totalInactiveCustomersInt = Integer.parseInt(currentInactiveCustomersBeforeAdd);
         String numberTotalInactiveCustomersAfterAdd = driver.findElement(By.xpath(Customers.inactiveCustomers)).getText();
         if((Integer.parseInt(numberTotalInactiveCustomersAfterAdd)) == totalInactiveCustomersInt){
-            System.out.println(+Integer.parseInt(numberTotalInactiveCustomersAfterAdd)+ " Inactive Customers after add new customer is correct");
+            System.out.println(+Integer.parseInt(numberTotalInactiveCustomersAfterAdd)+ " Total Inactive Customers after add new customer is correct");
         }
         else{
-            System.out.println("Inactive Customers after add new customer is not correct");
+            System.out.println("Total Inactive Customers after add new customer is not correct");
         }
 
         // Active Contacts
         int totalActiveContactsInt = Integer.parseInt(currentActiveContactsBeforeAdd);
         String numberTotalActiveContactsAfterAdd = driver.findElement(By.xpath(Customers.activeContacts)).getText();
         if(totalActiveContactsInt == Integer.parseInt(numberTotalActiveContactsAfterAdd)){
-            System.out.println(+Integer.parseInt(numberTotalActiveContactsAfterAdd)+ " Active Contacts after add new customer is correct");
+            System.out.println(+Integer.parseInt(numberTotalActiveContactsAfterAdd)+ " Total Active Contacts after add new customer is correct");
         }
         else{
-            System.out.println("Active Contacts after add new customer is not correct");
+            System.out.println("Total Active Contacts after add new customer is not correct");
         }
 
         // Inactive Contacts
         int totalInactiveContactsInt = Integer.parseInt(currentInactiveContactsBeforeAdd);
         String numberTotalInactiveContactsAfterAdd = driver.findElement(By.xpath(Customers.inactiveContacts)).getText();
         if(totalInactiveContactsInt == Integer.parseInt(numberTotalInactiveContactsAfterAdd)){
-            System.out.println(+Integer.parseInt(numberTotalInactiveContactsAfterAdd)+ " Inactive Contacts after add new customer is correct");
+            System.out.println(+Integer.parseInt(numberTotalInactiveContactsAfterAdd)+ " Total Inactive Contacts after add new customer is correct");
         }
         else{
-            System.out.println("Inactive Contacts after add new customer is not correct");
+            System.out.println("Total Inactive Contacts after add new customer is not correct");
         }
         // Validate thông tin Customer đã có trong table chưa
         driver.findElement(By.xpath(inputSearch)).sendKeys("long");
