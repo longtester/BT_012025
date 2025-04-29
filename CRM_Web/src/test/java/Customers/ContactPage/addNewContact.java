@@ -1,5 +1,6 @@
 package Customers.ContactPage;
 
+import Common.BaseTest;
 import Customers.CustomersPage.addNewCustomer;
 import Locators.Contact;
 import Locators.Customers;
@@ -15,7 +16,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class addNewContact {
+public class addNewContact extends BaseTest {
     static String firtname = "long";
     static String lastname = "tester";
     static String email = "longtester@mail.com";
@@ -27,16 +28,9 @@ public class addNewContact {
         return total;
     }
     public static void main(String[] args) throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://crm.anhtester.com/admin/authentication");
+        createDriver();
         // Login
-        driver.get("https://crm.anhtester.com/admin/authentication");
-        driver.findElement(By.xpath(LoginPage.inputEmail)).sendKeys("admin@example.com");
-        driver.findElement(By.xpath(LoginPage.inputPassword)).sendKeys("123456");
-        driver.findElement(By.xpath(LoginPage.buttonLogin)).click();
-
+        loginCRM();
         // Click Customers menu
         driver.findElement(By.xpath(Customers.menuCustomer)).click();
         // Lấy số lượng Active Contacts, Inactive Contacts hiện tại để lát so sánh
@@ -55,7 +49,7 @@ public class addNewContact {
             }
         }
         System.out.println("Index of company: " + index);
-
+        // Hover chuột đến Company để thấy nút contact
         Actions action = new Actions(driver);
         action.moveToElement(listCompany.get(index)).perform();
         Thread.sleep(1000);
@@ -155,10 +149,8 @@ public class addNewContact {
             System.out.println("Total Active Contact after add new contact is not correct");
         }
 
-
         Thread.sleep(3000);
-        driver.quit();
-
+        closeDriver();
 
     }
 }

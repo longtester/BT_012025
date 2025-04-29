@@ -1,5 +1,6 @@
 package Customers.ContactPage;
 
+import Common.BaseTest;
 import Customers.CustomersPage.addNewCustomer;
 import Locators.Contact;
 import Locators.Customers;
@@ -13,7 +14,7 @@ import org.openqa.selenium.interactions.Actions;
 import java.time.Duration;
 import java.util.List;
 
-public class inActiveContact {
+public class inActiveContact extends BaseTest {
     public static int getTotalAfterAdd(int element) {
         int total;
         total = element + 1;
@@ -25,23 +26,16 @@ public class inActiveContact {
         return total;
     }
     public static void main(String[] args) throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://crm.anhtester.com/admin/authentication");
+        createDriver();
         // Login
-        driver.get("https://crm.anhtester.com/admin/authentication");
-        driver.findElement(By.xpath(LoginPage.inputEmail)).sendKeys("admin@example.com");
-        driver.findElement(By.xpath(LoginPage.inputPassword)).sendKeys("123456");
-        driver.findElement(By.xpath(LoginPage.buttonLogin)).click();
-
+        loginCRM();
         // Click Customers menu
         driver.findElement(By.xpath(Customers.menuCustomer)).click();
         // Lấy số lượng Inactive Contacts hiện tại để lát so sánh
         String currentActiveContactsBeforeInactive = driver.findElement(By.xpath(Customers.activeContacts)).getText();
         String currentInactiveContactsBeforeInactive = driver.findElement(By.xpath(Customers.inactiveContacts)).getText();
 
-        // Search tên Company và add new contact
+        // Search tên Company
         driver.findElement(By.xpath(Customers.inputSearch)).sendKeys("long");
         Thread.sleep(2000);
         int index = 0;
@@ -53,7 +47,7 @@ public class inActiveContact {
             }
         }
         System.out.println("Index of company: " + index);
-
+        // Hover chuột đến Company để thấy nút contact
         Actions action = new Actions(driver);
         action.moveToElement(listCompany.get(index)).perform();
         Thread.sleep(1000);
@@ -75,7 +69,6 @@ public class inActiveContact {
         }
         driver.navigate().back();
         // Validate thông tin trong Customers Summary
-        // InActive Contacts: Hiện tại Total inactive contact = 0 nên phải check điều kiện !=0 rồi đi so sánh
         int totalInactiveContactsInt = Integer.parseInt(currentInactiveContactsBeforeInactive);
         int expect_TotalInActiveContact = getTotalAfterAdd(totalInactiveContactsInt);
         String numberTotalInactiveContacts = driver.findElement(By.xpath(Customers.inactiveContacts)).getText();
@@ -98,6 +91,6 @@ public class inActiveContact {
         }
 
         Thread.sleep(3000);
-        driver.quit();
+        closeDriver();
     }
 }

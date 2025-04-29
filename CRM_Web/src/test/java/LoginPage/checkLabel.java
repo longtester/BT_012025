@@ -1,5 +1,6 @@
 package LoginPage;
 
+import Common.BaseTest;
 import Locators.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,11 +8,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class checkLabel {
+public class checkLabel extends BaseTest {
     public static void main(String[] args) throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        createDriver();
         driver.get("https://crm.anhtester.com/admin/authentication");
         Thread.sleep(1000);
         String labelEmailAddress = driver.findElement(By.xpath(LoginPage.labelEmail)).getText();
@@ -31,7 +30,7 @@ public class checkLabel {
             } else{
                 System.out.println("Login page is not displayed correctly.");
             }
-        driver.quit();
+        closeDriver();
         }
 
     }

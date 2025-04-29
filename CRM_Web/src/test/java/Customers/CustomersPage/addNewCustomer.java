@@ -1,5 +1,6 @@
 package Customers.CustomersPage;
 
+import Common.BaseTest;
 import Locators.Customers;
 import Locators.LoginPage;
 import org.openqa.selenium.By;
@@ -15,8 +16,8 @@ import java.util.List;
 import static Locators.Customers.inputSearch;
 import static Locators.Customers.listcountry;
 
-public class addNewCustomer {
-    public static String company = "Long QA/QC";
+public class addNewCustomer extends BaseTest {
+    public static String company = "Long White Box";
     static String VATnumber = "123456789";
     static String phoneNumber = "0123456789";
     static String website = "https://anhtester.com/";
@@ -43,15 +44,9 @@ public class addNewCustomer {
 
 
     public static void main(String[] args) throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://crm.anhtester.com/admin/authentication");
+        createDriver();
         // Login
-        driver.get("https://crm.anhtester.com/admin/authentication");
-        driver.findElement(By.xpath(LoginPage.inputEmail)).sendKeys("admin@example.com");
-        driver.findElement(By.xpath(LoginPage.inputPassword)).sendKeys("123456");
-        driver.findElement(By.xpath(LoginPage.buttonLogin)).click();
+        loginCRM();
 
         // Click Customers menu
         driver.findElement(By.xpath(Customers.menuCustomer)).click();
@@ -215,6 +210,6 @@ public class addNewCustomer {
             }
         }
         Thread.sleep(3000);
-        driver.quit();
+        closeDriver();
     }
 }

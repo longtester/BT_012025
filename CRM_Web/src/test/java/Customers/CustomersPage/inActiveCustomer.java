@@ -1,5 +1,6 @@
 package Customers.CustomersPage;
 
+import Common.BaseTest;
 import Locators.Customers;
 import Locators.LoginPage;
 import org.openqa.selenium.By;
@@ -10,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 import java.util.List;
 
-public class inActiveCustomer {
+public class inActiveCustomer extends BaseTest {
     public static int getTotalAfterAdd(int element) {
         int total;
         total = element + 1;
@@ -22,16 +23,9 @@ public class inActiveCustomer {
         return total;
     }
     public static void main(String[] args) throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://crm.anhtester.com/admin/authentication");
+        createDriver();
         // Login
-        driver.get("https://crm.anhtester.com/admin/authentication");
-        driver.findElement(By.xpath(LoginPage.inputEmail)).sendKeys("admin@example.com");
-        driver.findElement(By.xpath(LoginPage.inputPassword)).sendKeys("123456");
-        driver.findElement(By.xpath(LoginPage.buttonLogin)).click();
-
+        loginCRM();
         // Click Customers menu
         driver.findElement(By.xpath(Customers.menuCustomer)).click();
         // Lấy số lượng Active Customer, Inactive Customers hiện tại để lát so sánh
@@ -76,6 +70,6 @@ public class inActiveCustomer {
         }
 
         Thread.sleep(3000);
-        driver.quit();
+        closeDriver();
     }
 }

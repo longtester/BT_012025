@@ -1,5 +1,6 @@
 package LoginPage;
 
+import Common.BaseTest;
 import Locators.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,11 +10,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class loginFail {
+public class loginFail extends BaseTest {
     public static void main(String[] args) throws InterruptedException {
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        createDriver();
         driver.get("https://crm.anhtester.com/admin/authentication");
         boolean buttonLoginIsEnabled = driver.findElement(By.xpath(LoginPage.buttonLogin)).isEnabled();
         if (buttonLoginIsEnabled) {
@@ -69,6 +68,6 @@ public class loginFail {
         } else {
             System.out.println("Alert error message is not displayed");
         }
-    driver.quit();
+        closeDriver();
     }
 }
