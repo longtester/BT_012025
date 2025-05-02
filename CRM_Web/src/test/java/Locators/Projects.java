@@ -9,6 +9,7 @@ public class Projects {
     public static String inputProjectName = "name";
     public static String dropdownCustomer = "//button[@data-id='clientid']";
     public static String inputSearchCustomer = "//button[@data-id='clientid']/following-sibling::div//input[@type='search']";
+    public static String listSearchCustomer = "//button[@data-id='clientid']/following-sibling::div//li";
     public static String checkboxCalculateProgress = "//input[@id='progress_from_tasks']";
     public static String slidebarProgress = "//div[@id='tab_project']/descendant::div[contains(@class,'project_progress_slider')]";
     public static String dropdownBillingType = "//button[@data-id='billing_type']";
@@ -50,4 +51,8 @@ public class Projects {
     public static String buttonNumberList = "//div[@title='Numbered list']";
     public static String buttonRestore = "//button[@title='Restore last draft']";
 
+    // Xpath for number of Projects status: On hold
+    public static String numberOnHold = "//span[normalize-space()='On Hold']/preceding-sibling::span";
+    // Xpath for add Project success
+    public static String alertAddProjectSuccess = "//span[@class='alert-title' and text()='Project added successfully.']";
 }

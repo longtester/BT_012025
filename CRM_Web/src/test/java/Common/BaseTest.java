@@ -14,7 +14,8 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
-    public static void closeDriver(){
+    public static void closeDriver() throws InterruptedException {
+        Thread.sleep(2000);
         driver.quit();
     }
     public static void loginCRM(){
