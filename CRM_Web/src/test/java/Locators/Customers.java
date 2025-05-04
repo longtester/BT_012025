@@ -7,7 +7,7 @@ public class Customers {
     public static String buttonNewCustomer = "//a[normalize-space()='New Customer']";
     // Xpath for Contacts button
     public static String buttonContacts = "//a[normalize-space()='Contacts' and contains(@href,'all_contacts')]";
-    // Xpath for Search input
+    // Xpath for input Search Customer
     public static String inputSearch = "//div[@id='clients_filter']//input[@type='search']";
 
     // Label xpath on Customer Details

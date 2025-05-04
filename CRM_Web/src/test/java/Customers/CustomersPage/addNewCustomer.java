@@ -35,12 +35,12 @@ public class addNewCustomer extends BaseTest {
         total = element + 1;
         return total;
     }
-    public static int getTotalAfterDelete(int element){
+
+    public static int getTotalAfterDelete(int element) {
         int total;
-        total = element -1;
+        total = element - 1;
         return total;
     }
-
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -131,9 +131,9 @@ public class addNewCustomer extends BaseTest {
         String valueCountry = driver.findElement(By.xpath(Customers.select_country)).getText();
 
         if (alertAddCustomerSuccess.equals("Customer added successfully.") && checkaAlertAddCustomerSuccess == true) {
-            System.out.println("Add new customer success");
+            System.out.println("Add new customer " + company + " success");
         } else {
-            System.out.println("Add new customer failed");
+            System.out.println("Add new customer " + company + " failed");
         }
         if (valueCompany.equals(company) && valueVATnumber.equals(VATnumber) && valuePhoneNumber.equals(phoneNumber)
                 && valueWebsite.equals(website) && valueGroup.equals(group) && valueCurrency.equals(currency.replace("$", ""))
@@ -153,9 +153,9 @@ public class addNewCustomer extends BaseTest {
         String numberTotalCustomerAfterAdd = driver.findElement(By.xpath(Customers.totalCustomers)).getText();
 
 
-        if(expect_TotalCustomersAfterAdd == Integer.parseInt(numberTotalCustomerAfterAdd)){
-            System.out.println(+Integer.parseInt(numberTotalCustomerAfterAdd)+ " Total Customers after add new customer is correct");
-        }else{
+        if (expect_TotalCustomersAfterAdd == Integer.parseInt(numberTotalCustomerAfterAdd)) {
+            System.out.println(+Integer.parseInt(numberTotalCustomerAfterAdd) + " Total Customers after add new customer is correct");
+        } else {
             System.out.println("Total Customer after add new customer is not correct");
         }
 
@@ -163,40 +163,36 @@ public class addNewCustomer extends BaseTest {
         int totalActiveCustomersInt = Integer.parseInt(currentActiveCustomersBeforeAdd);
         int expect_TotalActiveCustomersAfterAdd = getTotalAfterAdd(totalActiveCustomersInt);
         String numberTotalActiveCustomersAfterAdd = driver.findElement(By.xpath(Customers.activeCustomers)).getText();
-        if (expect_TotalActiveCustomersAfterAdd == Integer.parseInt(numberTotalActiveCustomersAfterAdd)){
-            System.out.println(+Integer.parseInt(numberTotalActiveCustomersAfterAdd)+ " Total Active Customers after add new customer is correct");
-        }
-        else{
+        if (expect_TotalActiveCustomersAfterAdd == Integer.parseInt(numberTotalActiveCustomersAfterAdd)) {
+            System.out.println(+Integer.parseInt(numberTotalActiveCustomersAfterAdd) + " Total Active Customers after add new customer is correct");
+        } else {
             System.out.println("Total Active Customers after add new customer is not correct");
         }
 
         // Inactive Customers
         int totalInactiveCustomersInt = Integer.parseInt(currentInactiveCustomersBeforeAdd);
         String numberTotalInactiveCustomersAfterAdd = driver.findElement(By.xpath(Customers.inactiveCustomers)).getText();
-        if((Integer.parseInt(numberTotalInactiveCustomersAfterAdd)) == totalInactiveCustomersInt){
-            System.out.println(+Integer.parseInt(numberTotalInactiveCustomersAfterAdd)+ " Total Inactive Customers after add new customer is correct");
-        }
-        else{
+        if ((Integer.parseInt(numberTotalInactiveCustomersAfterAdd)) == totalInactiveCustomersInt) {
+            System.out.println(+Integer.parseInt(numberTotalInactiveCustomersAfterAdd) + " Total Inactive Customers after add new customer is correct");
+        } else {
             System.out.println("Total Inactive Customers after add new customer is not correct");
         }
 
         // Active Contacts
         int totalActiveContactsInt = Integer.parseInt(currentActiveContactsBeforeAdd);
         String numberTotalActiveContactsAfterAdd = driver.findElement(By.xpath(Customers.activeContacts)).getText();
-        if(totalActiveContactsInt == Integer.parseInt(numberTotalActiveContactsAfterAdd)){
-            System.out.println(+Integer.parseInt(numberTotalActiveContactsAfterAdd)+ " Total Active Contacts after add new customer is correct");
-        }
-        else{
+        if (totalActiveContactsInt == Integer.parseInt(numberTotalActiveContactsAfterAdd)) {
+            System.out.println(+Integer.parseInt(numberTotalActiveContactsAfterAdd) + " Total Active Contacts after add new customer is correct");
+        } else {
             System.out.println("Total Active Contacts after add new customer is not correct");
         }
 
         // Inactive Contacts
         int totalInactiveContactsInt = Integer.parseInt(currentInactiveContactsBeforeAdd);
         String numberTotalInactiveContactsAfterAdd = driver.findElement(By.xpath(Customers.inactiveContacts)).getText();
-        if(totalInactiveContactsInt == Integer.parseInt(numberTotalInactiveContactsAfterAdd)){
-            System.out.println(+Integer.parseInt(numberTotalInactiveContactsAfterAdd)+ " Total Inactive Contacts after add new customer is correct");
-        }
-        else{
+        if (totalInactiveContactsInt == Integer.parseInt(numberTotalInactiveContactsAfterAdd)) {
+            System.out.println(+Integer.parseInt(numberTotalInactiveContactsAfterAdd) + " Total Inactive Contacts after add new customer is correct");
+        } else {
             System.out.println("Total Inactive Contacts after add new customer is not correct");
         }
         // Validate thông tin Customer đã có trong table chưa
@@ -206,7 +202,7 @@ public class addNewCustomer extends BaseTest {
         for (int i = 0; i < listCompany.size(); i++) {
             if (listCompany.get(i).getText().equals(company)) {
                 System.out.println("Customer " + company + " is displayed in the table");
-               break;
+                break;
             }
         }
         Thread.sleep(3000);

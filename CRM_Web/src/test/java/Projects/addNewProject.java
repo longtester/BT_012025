@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class addNewProject extends BaseTest {
-    public static String projectName = "5 anh em siêu nhân";
+    public static String projectName = "Test Generator";
     static String status = "On Hold";
 
     public static int getTotalAfterAdd(int element) {
@@ -18,6 +18,7 @@ public class addNewProject extends BaseTest {
         total = element + 1;
         return total;
     }
+
     public static void main(String[] args) throws InterruptedException {
         createDriver();
         loginCRM();
@@ -38,8 +39,8 @@ public class addNewProject extends BaseTest {
         driver.findElement(By.xpath(Projects.inputSearchCustomer)).sendKeys("long");
         Thread.sleep(1000);
         List<WebElement> listCustomer = driver.findElements(By.xpath(Projects.listSearchCustomer));
-        for(int i =0;i<listCustomer.size();i++){
-            if(listCustomer.get(i).getText().equals(addNewCustomer.company)){
+        for (int i = 0; i < listCustomer.size(); i++) {
+            if (listCustomer.get(i).getText().equals(addNewCustomer.company)) {
                 listCustomer.get(i).click();
                 break;
             }
@@ -47,8 +48,8 @@ public class addNewProject extends BaseTest {
         Thread.sleep(500);
         driver.findElement(By.xpath(Projects.dropdownStatus)).click();
         List<WebElement> listStatus = driver.findElements(By.xpath(Projects.dropdownlistStatus));
-        for(int i =0;i<listStatus.size();i++){
-            if(listStatus.get(i).getText().equals(status)){
+        for (int i = 0; i < listStatus.size(); i++) {
+            if (listStatus.get(i).getText().equals(status)) {
                 listStatus.get(i).click();
                 break;
             }
@@ -57,21 +58,36 @@ public class addNewProject extends BaseTest {
         Thread.sleep(1000);
         String alertAddProjectSuccess = driver.findElement(By.xpath(Projects.alertAddProjectSuccess)).getText();
         boolean alertAddProjectSuccessIsDisplayed = driver.findElement(By.xpath(Projects.alertAddProjectSuccess)).isDisplayed();
-        if(alertAddProjectSuccess.equals("Project added successfully.") && alertAddProjectSuccessIsDisplayed == true){
-            System.out.println("Add new Project successfully");
-        }else{
-            System.out.println("Add new Project failed");
+        if (alertAddProjectSuccess.equals("Project added successfully.") && alertAddProjectSuccessIsDisplayed == true) {
+            System.out.println("Add new project " + projectName + " successfully");
+        } else {
+            System.out.println("Add new project " + projectName + " failed");
         }
-        // Verify total Projects On Hold after add new Project
+        // Verify total Status Projects On Hold after add new Project
         driver.findElement(By.xpath(Projects.menuProject)).click();
         int currentProjectOnHold = Integer.parseInt(currentProjectOnHoldBeforeAdd);
         int expect_ProjectOnHold = getTotalAfterAdd(currentProjectOnHold);
         String currentProjectOnHoldAfterAdd = driver.findElement(By.xpath(Projects.numberOnHold)).getText();
-        if(Integer.parseInt(currentProjectOnHoldAfterAdd) == expect_ProjectOnHold){
-            System.out.println("Total Projects On Hold after add new Project is correct");
+        if (Integer.parseInt(currentProjectOnHoldAfterAdd) == expect_ProjectOnHold) {
+            System.out.println("Total Status Projects " + status + " after add new project is correct");
+        } else {
+            System.out.println("Total Status Projects " + status + " after add new project is not correct");
         }
-        else{
-            System.out.println("Total Projects On Hold after add new Project is not correct");
+        // Verify the information project display correct in table after add new project
+        driver.findElement(By.xpath(Projects.inputSearch)).sendKeys(projectName);
+        Thread.sleep(1000);
+        String getCurrentProjectName = driver.findElement(By.xpath(Projects.projectName)).getText();
+        boolean getCurrentProjectNameIsDisplayed = driver.findElement(By.xpath(Projects.projectName)).isDisplayed();
+        String getCurrentCustomerName = driver.findElement(By.xpath(Projects.customerName)).getText();
+        boolean getCurrentCustomerNameIsDisplayed = driver.findElement(By.xpath(Projects.customerName)).isDisplayed();
+        String getCurrentStatus = driver.findElement(By.xpath(Projects.status)).getText();
+        boolean getCurrentStatusIsDisplayed = driver.findElement(By.xpath(Projects.status)).isDisplayed();
+        if (getCurrentProjectNameIsDisplayed == true && getCurrentProjectName.equals(projectName)
+                && getCurrentCustomerNameIsDisplayed == true && getCurrentCustomerName.equals(addNewCustomer.company)
+                && getCurrentStatusIsDisplayed == true && getCurrentStatus.equals(status)) {
+            System.out.println("The information of Project " + projectName + " is correct");
+        } else {
+            System.out.println("The information of Project " + projectName + " is not correct");
         }
         closeDriver();
     }

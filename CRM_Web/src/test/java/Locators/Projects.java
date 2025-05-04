@@ -55,4 +55,10 @@ public class Projects {
     public static String numberOnHold = "//span[normalize-space()='On Hold']/preceding-sibling::span";
     // Xpath for add Project success
     public static String alertAddProjectSuccess = "//span[@class='alert-title' and text()='Project added successfully.']";
+    // Xpath for input Search Project
+    public static String inputSearch = "//div[@id='projects_filter']//input[@type='search']";
+    // Xpath for Project Name, Customer, Status in table
+    public static String projectName = "//tbody/tr/td[2]/a";
+    public static String customerName = "//tbody/tr/td[3]/a";
+    public static String status = "//tbody/tr/td[8]";
 }
