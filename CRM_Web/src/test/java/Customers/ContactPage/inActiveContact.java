@@ -62,7 +62,7 @@ public class inActiveContact extends BaseTest {
             System.out.println("Navigated to Contact page failed");
         }
         driver.findElement(By.xpath(Contact.toggleInactiveContact)).click();
-        if(driver.findElement(By.xpath(Contact.toggleInactiveContact)).isSelected() == true){
+        if(driver.findElement(By.xpath(Contact.isSelectedToggleInactiveContact)).isSelected() == true){
             System.out.println("Toggle button inactive contact is on");
         }else{
             System.out.println("Toggle button inactive contact is off");

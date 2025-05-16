@@ -105,6 +105,7 @@ public class Customers {
     public static String listbuttonContactCompany ="//th[@id='th-company']/following::tr/td[3]/div/a[2]";
 
     // Xpath for toggleInactiveCustomer
-    public static String listToggleInactiveCustomer = "//th[contains(@aria-label,'Active')]/following::td/div[@class='onoffswitch']/input";
+    public static String listToggleInactiveCustomer = "//th[contains(@aria-label,'Active')]/following::td/div[@class='onoffswitch']";
+    public static String listIsSelectedToggleInactiveCustomer = "//th[contains(@aria-label,'Active')]/following::td/div[@class='onoffswitch']/input";
 
 }
