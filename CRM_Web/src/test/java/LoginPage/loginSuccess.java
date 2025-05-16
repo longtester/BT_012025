@@ -14,7 +14,7 @@ public class loginSuccess extends BaseTest {
         createDriver();
         loginCRM();
         Thread.sleep(1000);
-        boolean menuIsDisplayed = driver.findElement(By.xpath(SidebarMenu.listmenu)).isDisplayed();
+        boolean menuIsDisplayed = driver.findElement(By.xpath(SidebarMenu.menuDashboard)).isDisplayed();
         if(menuIsDisplayed == true){
             System.out.println("Menu Dashboard is displayed");
         }else{

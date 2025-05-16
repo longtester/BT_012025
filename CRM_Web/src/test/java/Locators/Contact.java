@@ -28,5 +28,5 @@ public class Contact {
     public static String listEmail = "//th[contains(@aria-label,'Email')]/following::tr/td[2]";
 
     // Xpath for toggleInactiveContact
-    public static String toggleInactiveContact = "//th[contains(@aria-label,'Active')]/following::td[5]/div[@class='onoffswitch']";
+    public static String toggleInactiveContact = "//th[contains(@aria-label,'Active')]/following::td[5]/div[@class='onoffswitch']/input";
 }
